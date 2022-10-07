@@ -11,18 +11,25 @@ function App() {
     {
       path: '/', element: <Main></Main>,
       children: [
-       {
-        path: '/', element: <Shop></Shop>
-       },
-       {
-        path: '/orders', element: <Orders></Orders>
-       },
-       {
-        path: '/inventory', element: <Inventory></Inventory>
-       },
-       {
-        path: '/about', element: <About></About>
-      }
+        {
+          path: '/',
+          loader: () =>
+            fetch('products.json'),
+          element: <Shop></Shop>
+        },
+        {
+          path: '/orders',
+          loader: () => {
+            return fetch('products.json')
+          },
+          element: <Orders></Orders>
+        },
+        {
+          path: '/inventory', element: <Inventory></Inventory>
+        },
+        {
+          path: '/about', element: <About></About>
+        }
       ]
     }
   ])
